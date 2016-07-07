@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.0)
 set(TARGET_NAME conan_multi_xml)
 project(${TARGET_NAME} CXX)
 
+include(ConanFindUtilities.cmake)
+
 option(CONAN_MULTI_CONF "CMake should use multiconfiguration" ON)
 
 if(${CONAN_MULTI_CONF})
@@ -12,6 +14,7 @@ if(${CONAN_MULTI_CONF})
 else()
     include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
     conan_set_find_paths()
+    link_directories(${CONAN_LIB_DIRS})
 endif() 
 
 find_package(LIBXML2 CONFIG)
